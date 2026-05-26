@@ -1,0 +1,71 @@
+:root {
+    color-scheme: light;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #f4f7fb;
+    color: #1f2937;
+    font-family: Inter, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.horizontal-scroll {
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+}
+
+.selection-card {
+    width: 150px;
+    min-width: 150px;
+    height: 140px;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+
+    border-width: 2px;
+    border-color: #d0d7de;
+
+    background: white;
+    transform-origin: center;
+}
+
+.selection-card:hover {
+    transform: scale(1.02);
+
+    z-index: 2;
+
+    border-color: #0b7285;
+
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.selection-card.selected {
+    border-color: #0b7285 !important;
+    background: #e6f7fb;
+    box-shadow:
+        0 0 0 2px rgba(11, 114, 133, 0.12),
+        0 16px 40px rgba(11, 114, 133, 0.16);
+}
+
+.emoji-icon {
+    font-size: 32px;
+    line-height: 1;
+}

@@ -1,0 +1,29 @@
+.object-section {
+    display: flex;
+    gap: 32px;
+}
+
+.object-section__left {
+    flex: 1;
+    min-width: 0;
+}
+
+.object-section__right {
+    width: 360px;
+    flex-shrink: 0;
+
+    padding-left: 32px;
+
+    border-left: 1px solid #dce1e7;
+}
+
+.object-section__scroll {
+    display: flex;
+    gap: 16px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: thin;
+    padding: 8px 8px 12px 8px;
+}
