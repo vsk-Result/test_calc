@@ -1,9 +1,10 @@
-import { Autocomplete, Stack, Text, Title } from '@mantine/core';
+import { Autocomplete, Select, Stack, Text, Title } from '@mantine/core';
 
 import { SectionCard } from '@shared/ui/SectionCard';
 import { SelectionCard } from '@shared/ui/SelectionCard';
 
 import { useCalculatorStore } from '@entities/calculation-session';
+import { useMediaQuery } from '@mantine/hooks';
 import './PlacementSection.css';
 
 const items = [
@@ -17,6 +18,8 @@ export const PlacementSection = () => {
     const value = useCalculatorStore((s) => s.placement);
     const setValue = useCalculatorStore((s) => s.setPlacement);
 
+    const isMobile = useMediaQuery('(max-width: 768px)');
+
     return (
         <SectionCard>
             <div className="placement-section">
@@ -24,21 +27,41 @@ export const PlacementSection = () => {
                     <Stack gap="lg">
                         <Title order={3}>Размещение</Title>
 
-                        <div className="placement-section__scroll">
-                            {items.map((item) => (
-                                <SelectionCard
-                                    key={item.id}
-                                    title={item.title}
-                                    icon={<div className="emoji-icon">{item.icon}</div>}
-                                    selected={value === item.id}
-                                    onClick={() => setValue(item.id)}
-                                />
-                            ))}
-                        </div>
+                        {isMobile ? (
+                            <Select
+                                placeholder="Выберите размещение"
+                                data={items.map((item) => ({
+                                    value: item.id,
+                                    label: item.title,
+                                }))}
+                                value={value}
+                                onChange={(value) => setValue(value ?? '')}
+                            />
+                        ) : (
+                            <div className="placement-section__scroll">
+                                {items.map((item) => (
+                                    <SelectionCard
+                                        key={item.id}
+                                        title={item.title}
+                                        icon={
+                                            <div className="emoji-icon">{item.icon}</div>
+                                        }
+                                        selected={value === item.id}
+                                        onClick={() => setValue(item.id)}
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </Stack>
                 </div>
 
-                <div className="placement-section__right">
+                <div
+                    className={
+                        isMobile
+                            ? 'placement-section__right_mobile'
+                            : 'placement-section__right'
+                    }
+                >
                     <Stack gap="md">
                         <Title order={3}>Местоположение</Title>
 

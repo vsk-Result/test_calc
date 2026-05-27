@@ -1,11 +1,13 @@
 .object-section {
     display: flex;
+    flex-wrap: wrap;
     gap: 32px;
 }
 
 .object-section__left {
     flex: 1;
     min-width: 0;
+    min-width: 300px;
 }
 
 .object-section__right {
@@ -15,6 +17,11 @@
     padding-left: 32px;
 
     border-left: 1px solid #dce1e7;
+}
+
+.object-section__right_mobile {
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .object-section__scroll {

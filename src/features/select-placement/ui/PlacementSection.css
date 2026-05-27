@@ -6,6 +6,7 @@
 .placement-section__left {
     flex: 1;
     min-width: 0;
+    min-width: 300px;
 }
 
 .placement-section__right {
@@ -16,6 +17,11 @@
     padding-left: 32px;
 
     border-left: 1px solid #dce1e7;
+}
+
+.placement-section__right_mobile {
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .placement-section__scroll {
