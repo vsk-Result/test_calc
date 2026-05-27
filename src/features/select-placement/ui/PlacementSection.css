@@ -6,7 +6,6 @@
 .placement-section__left {
     flex: 1;
     min-width: 0;
-    min-width: 300px;
 }
 
 .placement-section__right {
