@@ -4,14 +4,39 @@ import { useMediaQuery } from '@mantine/hooks';
 import { SectionCard } from '@shared/ui/SectionCard';
 import { SelectionCard } from '@shared/ui/SelectionCard';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import RezervuarImg from '@shared/assets/interface_img_object/img_obj_rezervuar_bw.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import TruboprovodImg from '@shared/assets/interface_img_object/img_obj_truboprovod_bw.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import VozduhovodKrugliImg from '@shared/assets/interface_img_object/img_obj_vozduhovod_krugliy_bw.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import VozduhovodPramougImg from '@shared/assets/interface_img_object/img_obj_vozduhovod_pramougolniy_bw.svg?react';
+
 import { useCalculatorStore } from '@entities/calculation-session';
 import './ObjectTypeSection.css';
 
 const items = [
-    { id: 'pipe', title: 'Трубопровод', icon: '🛢️' },
-    { id: 'round', title: 'Воздуховод круглый', icon: '⭕' },
-    { id: 'rect', title: 'Воздуховод прямоугольный', icon: '⬜' },
-    { id: 'tank', title: 'Резервуар', icon: '🧯' },
+    {
+        id: 'truboprovod',
+        title: 'Трубопровод',
+        image: <TruboprovodImg />,
+    },
+    {
+        id: 'vozduhovod_krugliy',
+        title: 'Воздуховод круглый',
+        image: <VozduhovodKrugliImg />,
+    },
+    {
+        id: 'vozduhovod_pramougolniy',
+        title: 'Воздуховод прямоугольный',
+        image: <VozduhovodPramougImg />,
+    },
+    { id: 'rezervuar', title: 'Резервуар', image: <RezervuarImg /> },
 ];
 
 export const ObjectTypeSection = () => {
@@ -43,9 +68,7 @@ export const ObjectTypeSection = () => {
                                     <SelectionCard
                                         key={item.id}
                                         title={item.title}
-                                        icon={
-                                            <div className="emoji-icon">{item.icon}</div>
-                                        }
+                                        image={item.image}
                                         selected={value === item.id}
                                         onClick={() => setValue(item.id)}
                                     />

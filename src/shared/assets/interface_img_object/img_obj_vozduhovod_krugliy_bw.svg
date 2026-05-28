@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76.42 42">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-linejoin: round;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill: none;
+        stroke: #004e79;
+      }
+
+      .cls-1, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-1, .cls-4 {
+        stroke-linecap: round;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 22.93;
+      }
+    </style>
+  </defs>
+  <ellipse class="cls-2" cx="9.14" cy="28.28" rx="8.34" ry="13.41" transform="translate(-5.84 2.61) rotate(-12.37)"/>
+  <ellipse class="cls-2" cx="8.93" cy="28.28" rx="5.7" ry="10.51" transform="translate(-5.74 2.51) rotate(-12.13)"/>
+  <path class="cls-3" d="m21.79,11.29c4.01-1.23,8.63,2.5,10.77,8.7,2.35,6.79.91,14.07-3.22,16.27-.02.01-.04.02-.06.03"/>
+  <path class="cls-3" d="m35.11,7.99c4.04-1.12,8.59,2.63,10.61,8.74,2.21,6.69.61,13.79-3.57,15.85-.02.01-.04.02-.07.03"/>
+  <path class="cls-3" d="m48.06,4.79c4.06-1.1,8.62,2.58,10.65,8.57,2.22,6.56.62,13.51-3.58,15.54-.02.01-.04.02-.07.03"/>
+  <path class="cls-3" d="m59.15,2.02c4.01-1.08,8.53,2.54,10.53,8.44,2.2,6.46.61,13.31-3.54,15.3-.02.01-.04.02-.06.03"/>
+  <path class="cls-1" d="m64.33.7c4.05-1.09,8.61,2.56,10.63,8.49,1.97,5.78.8,12.08-2.57,14.76"/>
+  <line class="cls-4" x1="6.27" y1="15.15" x2="65.32" y2=".5"/>
+  <line class="cls-4" x1="13.51" y1="40.8" x2="72.38" y2="23.96"/>
+</svg>

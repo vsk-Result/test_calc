@@ -4,17 +4,27 @@ import { type ReactNode } from 'react';
 
 type Props = {
     title: string;
-    icon: ReactNode;
+    icon?: ReactNode;
+    image?: ReactNode;
     selected?: boolean;
+    disabled?: boolean;
     onClick?: () => void;
 };
 
-export const SelectionCard = ({ title, icon, selected, onClick }: Props) => {
+export const SelectionCard = ({
+    title,
+    icon,
+    image,
+    selected,
+    disabled,
+    onClick,
+}: Props) => {
     return (
         <Paper
-            onClick={onClick}
+            onClick={disabled ? undefined : onClick}
             className={clsx('selection-card', {
                 selected,
+                disabled,
             })}
             withBorder
             radius="lg"
@@ -22,6 +32,7 @@ export const SelectionCard = ({ title, icon, selected, onClick }: Props) => {
         >
             <Stack align="center" justify="center" h="100%" gap="md">
                 {icon}
+                {image}
 
                 <Text fw={600} ta="center" lh={1.3}>
                     {title}

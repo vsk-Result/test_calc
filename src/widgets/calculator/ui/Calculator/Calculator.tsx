@@ -16,6 +16,11 @@ export const Calculator = () => {
     const objectType = useCalculatorStore((s) => s.objectType);
     const placement = useCalculatorStore((s) => s.placement);
     const calculationType = useCalculatorStore((s) => s.calculationType);
+    const location = useCalculatorStore((s) => s.location);
+
+    const placementVisible =
+        placement &&
+        ((!!location && placement === 'na_ulice') || placement !== 'na_ulice');
 
     const placementRef = useRef<HTMLDivElement>(null);
     const calculationRef = useRef<HTMLDivElement>(null);
@@ -43,7 +48,7 @@ export const Calculator = () => {
             </AnimatePresence>
 
             <AnimatePresence>
-                {placement && (
+                {placementVisible && (
                     <motion.div
                         ref={calculationRef}
                         initial={{ opacity: 0, y: 24 }}

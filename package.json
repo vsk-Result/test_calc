@@ -22,6 +22,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.39.4",
+        "@svgr/cli": "^8.1.0",
         "@types/node": "^24.12.3",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
@@ -40,7 +41,8 @@
         "prettier-plugin-organize-imports": "^4.3.0",
         "typescript": "~6.0.3",
         "typescript-eslint": "^8.59.4",
-        "vite": "^8.0.14"
+        "vite": "^8.0.14",
+        "vite-plugin-svgr": "^5.2.0"
     },
     "lint-staged": {
         "*.{ts,tsx}": [
