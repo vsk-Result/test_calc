@@ -77,6 +77,7 @@ export const ObjectTypeSection = () => {
     const setValue = useCalculatorStore((s) => s.setObjectType);
 
     const isMobile = useMediaQuery('(max-width: 768px)');
+    const Img = Object.values(items).find((v) => v.id === value)?.src;
 
     return (
         <SectionCard>
@@ -95,6 +96,13 @@ export const ObjectTypeSection = () => {
                                 value={value}
                                 onChange={(value) => setValue(value ?? '')}
                                 renderOption={renderSelectOption}
+                                leftSectionPointerEvents="none"
+                                leftSectionWidth={48}
+                                leftSection={
+                                    value ? (
+                                        <Image h={16} component={Img} w="auto" />
+                                    ) : undefined
+                                }
                             />
                         ) : (
                             <div className="object-section__scroll">

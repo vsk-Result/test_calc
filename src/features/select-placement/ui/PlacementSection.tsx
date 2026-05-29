@@ -105,6 +105,7 @@ export const PlacementSection = () => {
     }, [objectTypeValue]);
 
     const isMobile = useMediaQuery('(max-width: 768px)');
+    const Img = Object.values(items).find((v) => v.id === value)?.src;
 
     useEffect(() => {
         if (value === 'na_ulice' && locationRef.current && !locationValue) {
@@ -134,6 +135,13 @@ export const PlacementSection = () => {
                                     setValue(value ?? '');
                                 }}
                                 renderOption={renderSelectOption}
+                                leftSectionPointerEvents="none"
+                                leftSectionWidth={48}
+                                leftSection={
+                                    value ? (
+                                        <Image h={16} component={Img} w="auto" />
+                                    ) : undefined
+                                }
                             />
                         ) : (
                             <div className="placement-section__scroll">
