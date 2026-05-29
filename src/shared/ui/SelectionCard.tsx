@@ -26,9 +26,10 @@ export const SelectionCard = ({
                 selected,
                 disabled,
             })}
-            withBorder
             radius="lg"
+            withBorder
             p="lg"
+            shadow={'sm'}
         >
             <Stack align="center" justify="center" h="100%" gap="md">
                 {icon}

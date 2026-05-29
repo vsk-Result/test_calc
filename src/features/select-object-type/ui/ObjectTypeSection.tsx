@@ -1,4 +1,12 @@
-import { Select, Stack, Text, Title } from '@mantine/core';
+import {
+    CheckIcon,
+    Flex,
+    Select,
+    Stack,
+    Text,
+    Title,
+    type SelectProps,
+} from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
 import { SectionCard } from '@shared/ui/SectionCard';
@@ -20,24 +28,49 @@ import VozduhovodPramougImg from '@shared/assets/interface_img_object/img_obj_vo
 import { useCalculatorStore } from '@entities/calculation-session';
 import './ObjectTypeSection.css';
 
+import { Image } from '@mantine/core';
+
 const items = [
     {
         id: 'truboprovod',
         title: 'Трубопровод',
         image: <TruboprovodImg />,
+        src: TruboprovodImg,
     },
     {
         id: 'vozduhovod_krugliy',
         title: 'Воздуховод круглый',
         image: <VozduhovodKrugliImg />,
+        src: VozduhovodKrugliImg,
     },
     {
         id: 'vozduhovod_pramougolniy',
         title: 'Воздуховод прямоугольный',
         image: <VozduhovodPramougImg />,
+        src: VozduhovodPramougImg,
     },
-    { id: 'rezervuar', title: 'Резервуар', image: <RezervuarImg /> },
+    { id: 'rezervuar', title: 'Резервуар', image: <RezervuarImg />, src: RezervuarImg },
 ];
+
+const iconProps = {
+    color: 'currentColor',
+    opacity: 0.6,
+    size: 14,
+};
+
+const renderSelectOption: SelectProps['renderOption'] = ({ option, checked }) => {
+    const Img = Object.values(items).find((v) => v.id === option.value)?.src;
+
+    return (
+        <Flex w={'100%'} direction="row" gap={14} justify="flex-start" align="flex-start">
+            <Image h={18} component={Img} w="auto" />
+            {option.label}
+            {checked && (
+                <CheckIcon style={{ marginInlineStart: 'auto' }} {...iconProps} />
+            )}
+        </Flex>
+    );
+};
 
 export const ObjectTypeSection = () => {
     const value = useCalculatorStore((s) => s.objectType);
@@ -61,6 +94,7 @@ export const ObjectTypeSection = () => {
                                 }))}
                                 value={value}
                                 onChange={(value) => setValue(value ?? '')}
+                                renderOption={renderSelectOption}
                             />
                         ) : (
                             <div className="object-section__scroll">

@@ -1,4 +1,14 @@
-import { Autocomplete, Select, Stack, Text, Title } from '@mantine/core';
+import {
+    Autocomplete,
+    CheckIcon,
+    Flex,
+    Image,
+    Select,
+    Stack,
+    Text,
+    Title,
+    type SelectProps,
+} from '@mantine/core';
 
 import { SectionCard } from '@shared/ui/SectionCard';
 import { SelectionCard } from '@shared/ui/SelectionCard';
@@ -18,15 +28,40 @@ import VTonneleImg from '@shared/assets/interface_img_razmeshenie/img_razmesheni
 
 import { useCalculatorStore } from '@entities/calculation-session';
 import { useMediaQuery } from '@mantine/hooks';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import './PlacementSection.css';
 
 const items = [
-    { id: 'na_ulice', title: 'На улице', image: <NaUliceImg /> },
-    { id: 'v_pomeshenii', title: 'В помещении', image: <VPomesheniiImg /> },
-    { id: 'v_kanale', title: 'В канале', image: <VKanaleImg /> },
-    { id: 'v_tonnele', title: 'В тоннеле', image: <VTonneleImg /> },
+    { id: 'na_ulice', title: 'На улице', image: <NaUliceImg />, src: NaUliceImg },
+    {
+        id: 'v_pomeshenii',
+        title: 'В помещении',
+        image: <VPomesheniiImg />,
+        src: VPomesheniiImg,
+    },
+    { id: 'v_kanale', title: 'В канале', image: <VKanaleImg />, src: VKanaleImg },
+    { id: 'v_tonnele', title: 'В тоннеле', image: <VTonneleImg />, src: VTonneleImg },
 ];
+
+const iconProps = {
+    color: 'currentColor',
+    opacity: 0.6,
+    size: 14,
+};
+
+const renderSelectOption: SelectProps['renderOption'] = ({ option, checked }) => {
+    const Img = Object.values(items).find((v) => v.id === option.value)?.src;
+
+    return (
+        <Flex w={'100%'} direction="row" gap={14} justify="flex-start" align="flex-start">
+            <Image h={18} component={Img} w="auto" />
+            {option.label}
+            {checked && (
+                <CheckIcon style={{ marginInlineStart: 'auto' }} {...iconProps} />
+            )}
+        </Flex>
+    );
+};
 
 export const PlacementSection = () => {
     const value = useCalculatorStore((s) => s.placement);
@@ -34,6 +69,8 @@ export const PlacementSection = () => {
     const locationValue = useCalculatorStore((s) => s.location);
     const setValue = useCalculatorStore((s) => s.setPlacement);
     const setLocationValue = useCalculatorStore((s) => s.setLocation);
+
+    const locationRef = useRef<HTMLInputElement>(null);
 
     const locationDisabled = value !== 'na_ulice';
     const disabledMap = useMemo(() => {
@@ -69,6 +106,12 @@ export const PlacementSection = () => {
 
     const isMobile = useMediaQuery('(max-width: 768px)');
 
+    useEffect(() => {
+        if (value === 'na_ulice' && locationRef.current && !locationValue) {
+            locationRef.current?.focus();
+        }
+    }, [value, locationRef.current, locationValue]);
+
     return (
         <SectionCard>
             <div className="placement-section">
@@ -87,7 +130,10 @@ export const PlacementSection = () => {
                                     disabled: disabledMap[item.id],
                                 }))}
                                 value={value}
-                                onChange={(value) => setValue(value ?? '')}
+                                onChange={(value) => {
+                                    setValue(value ?? '');
+                                }}
+                                renderOption={renderSelectOption}
                             />
                         ) : (
                             <div className="placement-section__scroll">
@@ -97,7 +143,9 @@ export const PlacementSection = () => {
                                         title={item.title}
                                         image={item.image}
                                         selected={value === item.id}
-                                        onClick={() => setValue(item.id)}
+                                        onClick={() => {
+                                            setValue(item.id);
+                                        }}
                                         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                         // @ts-ignore
                                         disabled={disabledMap[item.id]}
@@ -137,6 +185,7 @@ export const PlacementSection = () => {
                             disabled={locationDisabled}
                             value={locationValue}
                             onChange={setLocationValue}
+                            ref={locationRef}
                         />
                     </Stack>
                 </div>

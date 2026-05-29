@@ -40,9 +40,6 @@ body {
         background 0.2s ease,
         box-shadow 0.2s ease;
 
-    border-width: 2px;
-    border-color: #d0d7de;
-
     background: white;
     transform-origin: center;
 }
@@ -53,16 +50,11 @@ body {
     z-index: 2;
 
     border-color: #0b7285;
-
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
 }
 
 .selection-card.selected {
     border-color: #0b7285 !important;
     background: #e6f7fb;
-    box-shadow:
-        0 0 0 2px rgba(11, 114, 133, 0.12),
-        0 16px 40px rgba(11, 114, 133, 0.16);
 }
 
 .selection-card.disabled {

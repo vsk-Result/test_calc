@@ -1,10 +1,11 @@
 .placement-section {
     display: flex;
+    flex-wrap: wrap;
     gap: 32px;
 }
 
 .placement-section__left {
-    flex: 1;
+    flex: 1 1 700px;
     min-width: 0;
 }
 
@@ -25,21 +26,12 @@
 
 .placement-section__scroll {
     display: flex;
-
     gap: 16px;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    scrollbar-width: thin;
-    padding: 8px 8px 12px 8px;
+    padding: 12px;
+    padding-left: 0;
 }
 
-@media (max-width: 992px) {
-    .placement-section {
-        flex-direction: column;
-    }
-
+@media (max-width: 1190px) {
     .placement-section__right {
         width: 100%;
 
