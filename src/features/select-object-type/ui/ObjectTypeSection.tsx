@@ -24,6 +24,27 @@ import VozduhovodKrugliImg from '@shared/assets/interface_img_object/img_obj_voz
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import VozduhovodPramougImg from '@shared/assets/interface_img_object/img_obj_vozduhovod_pramougolniy_bw.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import HolodosnabjenieImg from '@shared/assets/interface_img_op/img_op_holodosnabjenie.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import KanalizacijaImg from '@shared/assets/interface_img_op/img_op_kanalizacija.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import KondicionirovanieImg from '@shared/assets/interface_img_op/img_op_kondicionirovanie.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import OtoplenieImg from '@shared/assets/interface_img_op/img_op_otoplenie.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import PromishlennostImg from '@shared/assets/interface_img_op/img_op_promishlennost.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import VentilacijaImg from '@shared/assets/interface_img_op/img_op_ventilacija.svg?react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import VodosnabjenieImg from '@shared/assets/interface_img_op/img_op_vodosnabjenie.svg?react';
 
 import { useCalculatorStore } from '@entities/calculation-session';
 import './ObjectTypeSection.css';
@@ -52,6 +73,51 @@ const items = [
     { id: 'rezervuar', title: 'Резервуар', image: <RezervuarImg />, src: RezervuarImg },
 ];
 
+const oblastPrimeneniya = [
+    {
+        id: 'otoplenie',
+        title: 'Отопление',
+        image: <OtoplenieImg />,
+        src: OtoplenieImg,
+    },
+    {
+        id: 'kanalizacija',
+        title: 'Канализация',
+        image: <KanalizacijaImg />,
+        src: KanalizacijaImg,
+    },
+    {
+        id: 'kondicionirovanie',
+        title: 'Кондиционирование',
+        image: <KondicionirovanieImg />,
+        src: KondicionirovanieImg,
+    },
+    {
+        id: 'holodosnabjenie',
+        title: 'Холодоснабжение',
+        image: <HolodosnabjenieImg />,
+        src: HolodosnabjenieImg,
+    },
+    {
+        id: 'promishlennost',
+        title: 'Промышленность',
+        image: <PromishlennostImg />,
+        src: PromishlennostImg,
+    },
+    {
+        id: 'ventilacija',
+        title: 'Вентиляция',
+        image: <VentilacijaImg />,
+        src: VentilacijaImg,
+    },
+    {
+        id: 'vodosnabjenie',
+        title: 'Водоснабжение',
+        image: <VodosnabjenieImg />,
+        src: VodosnabjenieImg,
+    },
+];
+
 const iconProps = {
     color: 'currentColor',
     opacity: 0.6,
@@ -72,12 +138,30 @@ const renderSelectOption: SelectProps['renderOption'] = ({ option, checked }) =>
     );
 };
 
+const renderSelectOblastOption: SelectProps['renderOption'] = ({ option, checked }) => {
+    const Img = Object.values(oblastPrimeneniya).find((v) => v.id === option.value)?.src;
+
+    return (
+        <Flex w={'100%'} direction="row" gap={14} justify="flex-start" align="flex-start">
+            <Image h={18} component={Img} w="auto" />
+            {option.label}
+            {checked && (
+                <CheckIcon style={{ marginInlineStart: 'auto' }} {...iconProps} />
+            )}
+        </Flex>
+    );
+};
+
 export const ObjectTypeSection = () => {
     const value = useCalculatorStore((s) => s.objectType);
     const setValue = useCalculatorStore((s) => s.setObjectType);
 
+    const oblast = useCalculatorStore((s) => s.oblast);
+    const setOblast = useCalculatorStore((s) => s.setOblast);
+
     const isMobile = useMediaQuery('(max-width: 768px)');
     const Img = Object.values(items).find((v) => v.id === value)?.src;
+    const OblastImg = Object.values(oblastPrimeneniya).find((v) => v.id === oblast)?.src;
 
     return (
         <SectionCard>
@@ -135,8 +219,21 @@ export const ObjectTypeSection = () => {
                         </Text>
 
                         <Select
-                            placeholder="Выберите область"
-                            data={['Отопление', 'Вентиляция', 'Кондиционирование']}
+                            placeholder="Выберите область применения"
+                            data={oblastPrimeneniya.map((item) => ({
+                                value: item.id,
+                                label: item.title,
+                            }))}
+                            value={oblast}
+                            onChange={(value) => setOblast(value ?? '')}
+                            renderOption={renderSelectOblastOption}
+                            leftSectionPointerEvents="none"
+                            leftSectionWidth={48}
+                            leftSection={
+                                oblast ? (
+                                    <Image h={16} component={OblastImg} w="auto" />
+                                ) : undefined
+                            }
                         />
                     </Stack>
                 </div>

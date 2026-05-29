@@ -5,11 +5,13 @@ type State = {
     placement: string | null;
     calculationType: string | null;
     location?: string;
+    oblast?: string;
 
     setObjectType: (value: string) => void;
     setPlacement: (value: string) => void;
     setCalculationType: (value: string) => void;
     setLocation: (value: string) => void;
+    setOblast: (value: string) => void;
 };
 
 export const useCalculatorStore = create<State>((set) => ({
@@ -17,6 +19,7 @@ export const useCalculatorStore = create<State>((set) => ({
     placement: null,
     calculationType: null,
     location: undefined,
+    oblast: undefined,
 
     setObjectType: (value) =>
         set({
@@ -38,5 +41,9 @@ export const useCalculatorStore = create<State>((set) => ({
     setLocation: (value) =>
         set({
             location: value,
+        }),
+    setOblast: (value) =>
+        set({
+            oblast: value,
         }),
 }));
