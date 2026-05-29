@@ -4,7 +4,7 @@ import { Calculator } from '@widgets/calculator';
 
 export const CalculatorPage = () => {
     return (
-        <Container size="xl" py="xl">
+        <Container size="xl" py={40} pb={140}>
             <Stack gap="xl">
                 <div>
                     <Title order={1}>Исходные данные</Title>

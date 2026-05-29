@@ -1,0 +1,29 @@
+.result-bar-wrapper {
+    position: fixed;
+
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+
+    z-index: 1000;
+
+    pointer-events: none;
+}
+
+.result-bar {
+    min-height: 80px;
+
+    display: flex;
+
+    align-items: center;
+
+    background: linear-gradient(135deg, #0b7285, #1098ad);
+
+    color: white;
+
+    box-shadow: 0 20px 60px rgba(16, 152, 173, 0.3);
+
+    backdrop-filter: blur(12px);
+
+    pointer-events: auto;
+}

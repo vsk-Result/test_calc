@@ -11,6 +11,7 @@ import { ObjectTypeSection } from '@features/select-object-type';
 import { PlacementSection } from '@features/select-placement';
 
 import { useAutoScroll } from '@shared/hooks/useAutoScroll';
+import { CalculationResultBar } from '@widgets/calculation-result-bar';
 
 export const Calculator = () => {
     const objectType = useCalculatorStore((s) => s.objectType);
@@ -62,14 +63,18 @@ export const Calculator = () => {
 
             <AnimatePresence>
                 {calculationType && (
-                    <motion.div
-                        ref={formRef}
-                        initial={{ opacity: 0, y: 24 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.35 }}
-                    >
-                        <CalculationFormSection />
-                    </motion.div>
+                    <>
+                        <motion.div
+                            ref={formRef}
+                            initial={{ opacity: 0, y: 24 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.35 }}
+                        >
+                            <CalculationFormSection />
+                        </motion.div>
+
+                        <CalculationResultBar />
+                    </>
                 )}
             </AnimatePresence>
         </Stack>
