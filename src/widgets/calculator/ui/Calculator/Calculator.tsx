@@ -10,6 +10,8 @@ import { CalculationTypeSection } from '@features/select-calculation-type';
 import { ObjectTypeSection } from '@features/select-object-type';
 import { PlacementSection } from '@features/select-placement';
 
+import { CalculationResult } from '@features/calculation-result';
+import { useInViewport } from '@mantine/hooks';
 import { useAutoScroll } from '@shared/hooks/useAutoScroll';
 import { CalculationResultBar } from '@widgets/calculation-result-bar';
 
@@ -30,6 +32,8 @@ export const Calculator = () => {
     useAutoScroll(placementRef, Boolean(objectType));
     useAutoScroll(calculationRef, Boolean(placement));
     useAutoScroll(formRef, Boolean(calculationType));
+
+    const { ref, inViewport } = useInViewport();
 
     return (
         <Stack gap="lg">
@@ -72,8 +76,24 @@ export const Calculator = () => {
                         >
                             <CalculationFormSection />
                         </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
 
-                        <CalculationResultBar />
+            <AnimatePresence>
+                {calculationType && (
+                    <>
+                        <motion.div
+                            initial={{ opacity: 0, y: 24 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.35 }}
+                        >
+                            <div ref={ref}>
+                                <CalculationResult />
+                            </div>
+                        </motion.div>
+
+                        <CalculationResultBar visible={!inViewport} />
                     </>
                 )}
             </AnimatePresence>

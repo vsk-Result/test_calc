@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, type FC } from 'react';
 
 import { motion } from 'framer-motion';
 
@@ -8,7 +8,7 @@ import { useCalculatorStore } from '@entities/calculation-session';
 
 import './CalculationResultBar.css';
 
-export const CalculationResultBar = () => {
+export const CalculationResultBar: FC<{ visible: boolean }> = ({ visible }) => {
     const calculationType = useCalculatorStore((s) => s.calculationType);
 
     const hasData = Boolean(calculationType);
@@ -20,22 +20,13 @@ export const CalculationResultBar = () => {
     return (
         <motion.div
             className="result-bar-wrapper"
-            initial={{
-                opacity: 0,
-                y: 120,
-            }}
             animate={{
-                opacity: 1,
-                y: 0,
-            }}
-            exit={{
-                opacity: 0,
-                y: 120,
+                opacity: !visible ? 0 : 1,
+                y: !visible ? 120 : 0,
+                pointerEvents: !visible ? 'none' : 'auto',
             }}
             transition={{
-                type: 'spring',
-                stiffness: 120,
-                damping: 18,
+                duration: 0.3,
             }}
         >
             <Paper radius="xl" p="md" className="result-bar">
