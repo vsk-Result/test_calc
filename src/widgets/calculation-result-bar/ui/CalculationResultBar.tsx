@@ -8,7 +8,10 @@ import { useCalculatorStore } from '@entities/calculation-session';
 
 import './CalculationResultBar.css';
 
-export const CalculationResultBar: FC<{ visible: boolean }> = ({ visible }) => {
+export const CalculationResultBar: FC<{ visible: boolean; onClick: VoidFunction }> = ({
+    visible,
+    onClick,
+}) => {
     const calculationType = useCalculatorStore((s) => s.calculationType);
 
     const hasData = Boolean(calculationType);
@@ -29,7 +32,7 @@ export const CalculationResultBar: FC<{ visible: boolean }> = ({ visible }) => {
                 duration: 0.3,
             }}
         >
-            <Paper radius="xl" p="md" className="result-bar">
+            <Paper radius="xl" p="md" className="result-bar" onClick={onClick}>
                 <Group justify="space-between" align="center">
                     <Stack gap={2}>
                         <Text size="sm" c="rgba(255,255,255,0.7)">

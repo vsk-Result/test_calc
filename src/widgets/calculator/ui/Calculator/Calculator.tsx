@@ -11,7 +11,7 @@ import { ObjectTypeSection } from '@features/select-object-type';
 import { PlacementSection } from '@features/select-placement';
 
 import { CalculationResult } from '@features/calculation-result';
-import { useInViewport } from '@mantine/hooks';
+import { useInViewport, useScrollIntoView } from '@mantine/hooks';
 import { useAutoScroll } from '@shared/hooks/useAutoScroll';
 import { CalculationResultBar } from '@widgets/calculation-result-bar';
 
@@ -32,6 +32,11 @@ export const Calculator = () => {
     useAutoScroll(placementRef, Boolean(objectType));
     useAutoScroll(calculationRef, Boolean(placement));
     useAutoScroll(formRef, Boolean(calculationType));
+
+    const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
+        offset: 60,
+        duration: 500,
+    });
 
     const { ref, inViewport } = useInViewport();
 
@@ -84,6 +89,7 @@ export const Calculator = () => {
                 {calculationType && (
                     <>
                         <motion.div
+                            ref={targetRef}
                             initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.35 }}
@@ -93,7 +99,14 @@ export const Calculator = () => {
                             </div>
                         </motion.div>
 
-                        <CalculationResultBar visible={!inViewport} />
+                        <CalculationResultBar
+                            visible={!inViewport}
+                            onClick={() =>
+                                scrollIntoView({
+                                    alignment: 'center',
+                                })
+                            }
+                        />
                     </>
                 )}
             </AnimatePresence>
