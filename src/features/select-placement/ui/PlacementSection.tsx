@@ -142,6 +142,9 @@ export const PlacementSection = () => {
                                         <Image h={16} component={Img} w="auto" />
                                     ) : undefined
                                 }
+                                comboboxProps={{
+                                    transitionProps: { transition: 'pop', duration: 200 },
+                                }}
                             />
                         ) : (
                             <div className="placement-section__scroll">
@@ -194,6 +197,9 @@ export const PlacementSection = () => {
                             value={locationValue}
                             onChange={setLocationValue}
                             ref={locationRef}
+                            comboboxProps={{
+                                transitionProps: { transition: 'pop', duration: 200 },
+                            }}
                         />
                     </Stack>
                 </div>

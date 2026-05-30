@@ -38,14 +38,14 @@ export const CalculationResultBar = () => {
                 damping: 18,
             }}
         >
-            <Paper radius="xl" p="lg" className="result-bar">
+            <Paper radius="xl" p="md" className="result-bar">
                 <Group justify="space-between" align="center">
                     <Stack gap={2}>
                         <Text size="sm" c="rgba(255,255,255,0.7)">
                             Результат расчета
                         </Text>
 
-                        <Text fw={800} size="36px">
+                        <Text fw={800} size="18px">
                             {hasData ? `${result} мм` : 'Введите все данные'}
                         </Text>
                     </Stack>

@@ -187,6 +187,9 @@ export const ObjectTypeSection = () => {
                                         <Image h={16} component={Img} w="auto" />
                                     ) : undefined
                                 }
+                                comboboxProps={{
+                                    transitionProps: { transition: 'pop', duration: 200 },
+                                }}
                             />
                         ) : (
                             <div className="object-section__scroll">
@@ -234,6 +237,10 @@ export const ObjectTypeSection = () => {
                                     <Image h={16} component={OblastImg} w="auto" />
                                 ) : undefined
                             }
+                            comboboxProps={{
+                                transitionProps: { transition: 'pop', duration: 200 },
+                            }}
+                            maxDropdownHeight={250}
                         />
                     </Stack>
                 </div>
