@@ -38,6 +38,11 @@ export const Calculator = () => {
         duration: 500,
     });
 
+    const { scrollIntoView: scrollToForm, targetRef: targetFormRef } =
+        useScrollIntoView<HTMLDivElement>({
+            duration: 500,
+        });
+
     const { ref, inViewport } = useInViewport();
 
     return (
@@ -65,7 +70,15 @@ export const Calculator = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.35 }}
                     >
-                        <CalculationTypeSection />
+                        <CalculationTypeSection
+                            onClick={() => {
+                                if (calculationType) {
+                                    scrollToForm({
+                                        alignment: 'start',
+                                    });
+                                }
+                            }}
+                        />
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -79,7 +92,9 @@ export const Calculator = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.35 }}
                         >
-                            <CalculationFormSection />
+                            <div ref={targetFormRef}>
+                                <CalculationFormSection />
+                            </div>
                         </motion.div>
                     </>
                 )}

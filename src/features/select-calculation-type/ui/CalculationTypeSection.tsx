@@ -3,7 +3,7 @@ import { Radio, SimpleGrid, Stack, Text, Title } from '@mantine/core';
 import { useCalculatorStore } from '@entities/calculation-session';
 
 import { SectionCard } from '@shared/ui/SectionCard';
-import { useMemo } from 'react';
+import { useMemo, type FC } from 'react';
 
 const options = [
     {
@@ -48,7 +48,7 @@ const options = [
     },
 ];
 
-export const CalculationTypeSection = () => {
+export const CalculationTypeSection: FC<{ onClick: VoidFunction }> = ({ onClick }) => {
     const value = useCalculatorStore((s) => s.calculationType);
     const placementValue = useCalculatorStore((s) => s.placement);
     const objectTypeValue = useCalculatorStore((s) => s.objectType);
@@ -111,7 +111,13 @@ export const CalculationTypeSection = () => {
                     <Text c="dimmed">Выберите метод расчета</Text>
                 </div>
 
-                <Radio.Group value={value ?? ''} onChange={setValue}>
+                <Radio.Group
+                    value={value ?? ''}
+                    onChange={(v) => {
+                        setValue(v);
+                        onClick();
+                    }}
+                >
                     <SimpleGrid cols={{ base: 1, md: 2 }} spacing="md">
                         {options.map((option) => (
                             <Radio

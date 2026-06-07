@@ -14,6 +14,18 @@ import {
 
 import { SectionCard } from '@shared/ui/SectionCard';
 
+const nameMap: Record<string, string> = {
+    nptp: 'По нормированной плотности теплового потока.',
+    zptp: 'По заданной плотности теплового потока.',
+    ztnp: 'По заданной температуре наружной поверхности.',
+    pkvvp: 'Для предотвращающей конденсацию влаги из воздуха на ее поверхности.',
+    zsptv: 'По заданному изменению температуры вещества, транспортируемого трубопроводами.',
+    zvpdvtz:
+        'По заданному времени приостановки движения жидкого вещества в трубопроводе в целях предотвращения его замерзания.',
+    zvonve: 'По заданной величине охлаждения (нагревания) вещества, сохраняемого в емкостях.',
+    pkvvpo: 'Для предотвращения конденсации влаги на внутренних поверхностях.',
+};
+
 export const CalculationFormSection = () => {
     const objectType = useCalculatorStore((s) => s.objectType);
     const calculationType = useCalculatorStore((s) => s.calculationType);
@@ -26,9 +38,7 @@ export const CalculationFormSection = () => {
                         <div>
                             <Title order={2}>Расчет</Title>
 
-                            <Text c="dimmed">
-                                По нормированной плотности теплового потока
-                            </Text>
+                            <Text c="dimmed">{nameMap[calculationType ?? 'nptp']}</Text>
                         </div>
 
                         <Grid gap={'xl'}>
@@ -41,7 +51,7 @@ export const CalculationFormSection = () => {
                                             name={'t_v_nptp'}
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура окружающей среды, °C"
                                                 defaultValue={20}
@@ -51,7 +61,7 @@ export const CalculationFormSection = () => {
 
                                             <Checkbox
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name={'chb_sp_t_n_nptp'}
                                             />
                                         </Group>
@@ -97,7 +107,7 @@ export const CalculationFormSection = () => {
                                             name="t_v_zptp"
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура окружающей среды, °C"
                                                 defaultValue={20}
@@ -107,7 +117,7 @@ export const CalculationFormSection = () => {
 
                                             <Checkbox
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_t_n_zptp"
                                             />
                                         </Group>
@@ -128,7 +138,7 @@ export const CalculationFormSection = () => {
                                             name="t_v_pkvvp"
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура окружающей среды, °C"
                                                 defaultValue={20}
@@ -138,7 +148,7 @@ export const CalculationFormSection = () => {
 
                                             <Checkbox
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_t_n_pkvvp"
                                             />
                                         </Group>
@@ -159,7 +169,7 @@ export const CalculationFormSection = () => {
                                             name="t_v_ztnp"
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура окружающей среды, °C"
                                                 defaultValue={20}
@@ -169,12 +179,12 @@ export const CalculationFormSection = () => {
 
                                             <Checkbox
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_t_n_ztnp"
                                             />
                                         </Group>
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура на поверхности изоляции, °C"
                                                 defaultValue={40}
@@ -185,7 +195,7 @@ export const CalculationFormSection = () => {
                                             <Checkbox
                                                 checked
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_t_p_ztnp"
                                             />
                                         </Group>
@@ -206,7 +216,7 @@ export const CalculationFormSection = () => {
                                             name="t_v_vkonce_zsptv"
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура окружающей среды, °C"
                                                 defaultValue={20}
@@ -216,7 +226,7 @@ export const CalculationFormSection = () => {
 
                                             <Checkbox
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_t_n_zsptv"
                                             />
                                         </Group>
@@ -243,7 +253,7 @@ export const CalculationFormSection = () => {
                                             name="t_v_zvpdvtz"
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура окружающей среды, °C"
                                                 defaultValue={20}
@@ -253,7 +263,7 @@ export const CalculationFormSection = () => {
 
                                             <Checkbox
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_t_n_zvpdvtz"
                                             />
                                         </Group>
@@ -292,7 +302,7 @@ export const CalculationFormSection = () => {
                                             name="t_v_konechnaya_zvonve"
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура окружающей среды, °C"
                                                 defaultValue={20}
@@ -302,7 +312,7 @@ export const CalculationFormSection = () => {
 
                                             <Checkbox
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_t_n_zvonve"
                                             />
                                         </Group>
@@ -335,7 +345,7 @@ export const CalculationFormSection = () => {
                                             name="t_v_pkvvpo"
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Температура окружающей среды, °C"
                                                 defaultValue={20}
@@ -345,7 +355,7 @@ export const CalculationFormSection = () => {
 
                                             <Checkbox
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_t_n_pkvvpo"
                                             />
                                         </Group>
@@ -427,7 +437,7 @@ export const CalculationFormSection = () => {
                                             name="cmbx_dop_zashitnoe_pokritie"
                                         />
 
-                                        <Group align={'center'}>
+                                        <Group align={'end'}>
                                             <NumberInput
                                                 label="Коэффициент теплоотдачи, Вт/(м²*C)"
                                                 defaultValue={7}
@@ -439,7 +449,7 @@ export const CalculationFormSection = () => {
                                             <Checkbox
                                                 defaultChecked
                                                 label="по СП"
-                                                style={{ marginTop: '12px' }}
+                                                style={{ marginBottom: '8px' }}
                                                 name="chb_sp_alpha_n"
                                             />
                                         </Group>
