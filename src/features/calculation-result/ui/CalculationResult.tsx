@@ -19,7 +19,7 @@ export const CalculationResult = () => {
 
                 <Paper radius="lg" p="lg" bg="#0b5d7a" c="white">
                     <Grid>
-                        <Grid.Col span={7}>
+                        <Grid.Col span={{ base: 12, md: 7 }} order={{ base: 2, md: 1 }}>
                             <Stack>
                                 <Select
                                     label="Материал"
@@ -37,7 +37,7 @@ export const CalculationResult = () => {
                             </Stack>
                         </Grid.Col>
 
-                        <Grid.Col span={5}>
+                        <Grid.Col span={{ base: 12, md: 5 }} order={{ base: 1, md: 2 }}>
                             <Paper radius="md" p={40} bg="rgba(255,255,255,0.08)">
                                 <Stack align="center">
                                     <Text size="sm">Расчетная толщина</Text>
