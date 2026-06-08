@@ -26,6 +26,17 @@ const nameMap: Record<string, string> = {
     pkvvpo: 'Для предотвращения конденсации влаги на внутренних поверхностях.',
 };
 
+const gostMap: Record<string, string> = {
+    nptp: 'СП 61.13330.2012 - B.2.1',
+    zptp: 'СНиП 2.04.14-88',
+    ztnp: 'СП 61.13330.2012 - B.2.3',
+    pkvvp: 'СП 61.13330.2012 - B.2.4',
+    zsptv: 'СП 61.13330.2012',
+    zvpdvtz: 'СНиП 2.04.14-88',
+    zvonve: 'СНиП 2.04.14-88',
+    pkvvpo: 'СНиП 2.04.14-88',
+};
+
 export const CalculationFormSection = () => {
     const objectType = useCalculatorStore((s) => s.objectType);
     const calculationType = useCalculatorStore((s) => s.calculationType);
@@ -39,6 +50,9 @@ export const CalculationFormSection = () => {
                             <Title order={2}>Расчет</Title>
 
                             <Text c="dimmed">{nameMap[calculationType ?? 'nptp']}</Text>
+                            <Text mt={'xs'} c="dimmed">
+                                {gostMap[calculationType ?? 'nptp']}
+                            </Text>
                         </div>
 
                         <Grid gap={'xl'}>
